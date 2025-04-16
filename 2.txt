@@ -1,0 +1,59 @@
+// Dados MOCKADOS (simulados) - Substitua por uma API real depois!
+const jogos = [
+    { timeCasa: "Flamengo", placar: "2 x 1", timeFora: "Palmeiras", data: "01/01/2024" },
+    { timeCasa: "São Paulo", placar: "1 x 1", timeFora: "Corinthians", data: "02/01/2024" },
+];
+
+const tabela = [
+    { posicao: 1, time: "Flamengo", pontos: 21 },
+    { posicao: 2, time: "Palmeiras", pontos: 19 },
+    { posicao: 3, time: "São Paulo", pontos: 18 },
+];
+
+// Mostra os jogos na página
+function carregarJogos() {
+    let html = '';
+    jogos.forEach(jogo => {
+        html += `
+            <div class="jogo mb-2 p-2 border-bottom">
+                <strong>${jogo.timeCasa} ${jogo.placar} ${jogo.timeFora}</strong>
+                <small class="text-muted">${jogo.data}</small>
+            </div>
+        `;
+    });
+    document.getElementById("jogos").innerHTML = html;
+}
+
+// Mostra a tabela de classificação
+function carregarTabela() {
+    let html = `
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Time</th>
+                    <th>Pontos</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    tabela.forEach(time => {
+        html += `
+            <tr>
+                <td>${time.posicao}</td>
+                <td>${time.time}</td>
+                <td>${time.pontos}</td>
+            </tr>
+        `;
+    });
+    
+    html += `</tbody></table>`;
+    document.getElementById("tabela").innerHTML = html;
+}
+
+// Carrega tudo quando a página abre
+window.onload = function() {
+    carregarJogos();
+    carregarTabela();
+};
